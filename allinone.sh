@@ -15,6 +15,7 @@ system_check(){
 		df -h > ~/storage.txt
 	fi
 
+#got error, need to correct later
 if [ $(cat ~/storage.txt | awk '{print $5}') -gt 90 ]; then
 	echo "Drive is over 90% full, please free up some space"
 else
