@@ -1,0 +1,59 @@
+Project Spec: Interactive System & Task Manager
+You will build a terminal-based tool called task_manager.sh. The script manages a list of items or system checks through a recurring interactive menu.
+
+Required Concepts Checklist
+[ ] while loop: Keeps the program running in an interactive menu until the user explicitly chooses to exit.
+
+[ ] case statement: Takes the user's menu selection and routes execution to the correct option block.
+
+[ ] if / elif / else: Evaluates conditions (e.g., checking system status, validating input ranges, or inspecting string values).
+
+[ ] for loop: Iterates through a collection (e.g., a list of files, network targets, or array elements).
+
+Suggested Requirements to Build
+1. Setup & Infinite Menu Loop
+Start with an infinite while loop that displays a numbered menu each iteration and reads user input into a variable (e.g., CHOICE).
+
+2. Main Menu Options (case Statement)
+Use a case statement to handle the user's input:
+
+Option 1: Check System Health
+
+Option 2: Batch File Checker
+
+Option 3: Service / Target Status Ping
+
+Option 4: Exit
+
+Wildcard (*): Print an error for invalid menu selections.
+
+Implementation Details for Each Feature
+Feature 1: Check System Health (Use if / elif)
+Check the current disk usage percentage of your system (Hint: df -h / | awk ... or df / | tail -1).
+
+Use an if / elif / else chain on the numeric percentage:
+
+If usage is greater than 85%, echo a CRITICAL warning.
+
+elif usage is greater than 70%, echo a WARNING.
+
+else, echo an OK / HEALTHY message.
+
+Feature 2: Batch File Checker (Use a for Loop)
+Prompt the user for a directory path or target file extension (e.g., txt or sh).
+
+Write a for loop to iterate over all matching files in that folder.
+
+Inside the loop, check if the file is readable or non-empty ([ -s "$file" ]), and print a quick status line for each file found.
+
+Feature 3: Service or Target Status (Combine Loops and Logic)
+Define an array or list of domain names or IP addresses (e.g., google.com, 127.0.0.1, invalid.test).
+
+Use a for loop to go through each target.
+
+Check connectivity (using ping -c 1 or curl -I -s).
+
+Use if / elif to flag targets as ONLINE, UNREACHABLE, or INVALID.
+
+Feature 4: Exit Strategy
+Break out of the while loop cleanly using the break command when selected.
