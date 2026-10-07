@@ -1,6 +1,13 @@
 #!/bin/bash
 
 system_check(){
+echo "--Checking the drive storage space--"
+
+#Create a storage and append new one
+
+touch ~/storage.txt
+
+
 	
 
 }
