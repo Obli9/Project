@@ -15,19 +15,30 @@ system_check(){
 		df -h > ~/storage.txt
 	fi
 
-#got error, need to correct later
-if [ $(cat ~/storage.txt | awk '{print $5}') -gt 90 ]; then
-	echo "Drive is over 90% full, please free up some space"
-else
-	echo "Drive is under 90% full, no action needed"
-fi
+	storage=$(awk '{print $5}' ~/storage.txt | grep -v Use | sed 's/%//g' | sort -nr | head -n 1)
+
+	if [ "$storage" -ge 90 ]; then
+		echo "Drive is over 90% full, please free up some space"
+	else
+		echo "Drive is under 90% full, no action needed"
+	fi
 	
 }
 
-#Using : for placeholder so that the 
-#script can be run without errors, but the function does nothing
 file_check(){
-	:
+	echo  "Please enter the path to the directory you want to check (example: /home/user/Documents): "
+	read DIRECTORY
+	DIRECTORY=ls $DIRECTORY
+
+
+#Need to make directory to print content 
+#one by one, and check if the file is empty or not. 
+#If it is not empty, print the file name.
+	for file in $DIRECTORY; do 
+		if [ -s "$file" ]; then
+			echo "File: $file is not empty" #why it not check the content of the file?
+		fi
+	done
 }
 
 network_check(){
