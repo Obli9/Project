@@ -42,7 +42,7 @@ file_check(){
 }
 
 network_check(){
-	
+
 	echo "Enter the IP or domain name to ping, separated by spaces (if any): "
 	read -a IP
 
@@ -56,22 +56,36 @@ network_check(){
 	done 
 }
 
-echo -e "Welcome to the all in one!\n"
+while true
+do
+	echo -e "Welcome to the all in one!\n"
 
-echo -e "Options:\n1)Check System Health\n2)Batch File Checker\n3)Network Checker\n4)Exit"
+	echo -e "Options:\n1)Check System Health\n2)Batch File Checker\n3)Network Checker\n4)Exit"
 
-read -p "Please select an option: " OPTION
+	read -p "Please select an option: " OPTION
 
-case $OPTION in
-1)
-	system_check
-	exit;;
-2)
-	file_check
-	exit;;
-3)
-	network_check
-	exit;;
-*)
-	exit;;
-esac
+	case $OPTION in
+	1)
+		system_check
+		;;
+	2)
+		file_check
+		;;
+	3)
+		network_check
+		;;
+	*)
+		;;
+	esac
+
+read -p "Do you want to end the program?" END
+
+while true
+do
+if [ $END = "y" || "Y" ]
+	exit 0;
+elif [ $END = "N" || "n" ]
+	:
+else
+	#how to make it repeat when its neither of those option?
+done
