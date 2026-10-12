@@ -22,6 +22,7 @@ system_check(){
 	else
 		echo "Drive is under 90% full, no action needed"
 	fi
+
 	
 }
 
@@ -39,6 +40,7 @@ file_check(){
 			echo "File: $file is empty"
 		fi
 	done
+
 }
 
 network_check(){
@@ -54,6 +56,7 @@ network_check(){
 			echo "Ping to $ip failed"
 		fi
 	done 
+
 }
 
 while true
@@ -67,25 +70,40 @@ do
 	case $OPTION in
 	1)
 		system_check
+		break
 		;;
 	2)
 		file_check
+		break
 		;;
 	3)
 		network_check
+		break
+		;;
+	4)
+		echo "Exiting..."
+		exit 0
 		;;
 	*)
+		echo -e "Invalid option, please select 1, 2, 3 or 4\n"\a
 		;;
 	esac
 
-read -p "Do you want to end the program?" END
-
+done
 while true
-do
-if [ $END = "y" || "Y" ]
-	exit 0;
-elif [ $END = "N" || "n" ]
-	:
-else
-	#how to make it repeat when its neither of those option?
+	do
+	read -p "Do you want to end the program?" END
+
+	case $END in
+	y | Y)
+		echo "Exiting..."
+		exit 0;;
+	n | N)
+		echo "Returning to main menu..."
+		;;
+	*)
+		echo "Invalid input, please enter y or n"
+		;;
+	esac
+	
 done
