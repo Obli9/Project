@@ -70,15 +70,12 @@ do
 	case $OPTION in
 	1)
 		system_check
-		break
 		;;
 	2)
 		file_check
-		break
 		;;
 	3)
 		network_check
-		break
 		;;
 	4)
 		echo "Exiting..."
@@ -89,8 +86,7 @@ do
 		;;
 	esac
 
-done
-while true
+	while true
 	do
 	read -p "Do you want to end the program?" END
 
@@ -100,10 +96,15 @@ while true
 		exit 0;;
 	n | N)
 		echo "Returning to main menu..."
+		break 1
 		;;
 	*)
 		echo "Invalid input, please enter y or n"
 		;;
 	esac
 	
+
+	done
+
+
 done
